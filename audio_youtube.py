@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import youtube_dl
 
 def get_audio(video_id):
-    file_path="audio/"+video_id+".m4a"
+    file_path="audio/"+video_id+".wav"
     ydl_opts = {
         'outtmpl': file_path,
         'format': 'bestaudio/best',
