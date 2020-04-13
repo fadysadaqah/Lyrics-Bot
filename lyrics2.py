@@ -17,7 +17,7 @@ def create_text_clip(srt,font,song_name,fontsize):
         if x != (len(srt)-1):
             if (i["duration"]+i["start"])>(srt[x+1]["start"]) or (i["duration"]+i["start"])==(srt[x+1]["start"]):
                 item_duration=srt[x+1]["start"]-i["start"]
-        txt_clip = TextClip(srt_filter(i["text"]).encode('utf8'),method="caption",font=font,size=(3500,2160), fontsize=fontsize, color='white' ,align="center").set_duration(t=item_duration)
+        txt_clip = TextClip(srt_filter(i["text"]).encode('utf8'),method="caption",font=font,size=(1800,1080), fontsize=fontsize, color='white' ,align="center").set_duration(t=item_duration)
         clip_list.append(txt_clip)
         old_start=item_start
         old_duration=item_duration
@@ -31,7 +31,7 @@ def create_video(background,video_id,srt,font,fps,song_name,fontsize):
     clips = [ImageClip(background).set_duration(audio_time)]
     clip = concatenate_videoclips(clips, method="compose")
     clip = CompositeVideoClip([clip, create_text_clip(srt,font,song_name,fontsize)])
-    clip.write_videofile(video_name,fps=fps,audio=audio_file)
+    clip.write_videofile(video_name,fps=fps,audio=audio_file,threads=10)
 
 def srt_filter(srt):
     srt= srt.replace("♪ ","").replace(" ♪","").replace("♪","")
