@@ -25,6 +25,7 @@ def create_text_clip(srt,font,song_name,fontsize):
     return final_clip
 
 def create_video(background,video_id,srt,font,fps,song_name,fontsize):
+    background='img/'+background+'.jpg'
     audio_file = "audio/"+video_id+'.mp3'
     audio_time = AudioFileClip(audio_file).duration
     video_name=song_name+".mp4"
